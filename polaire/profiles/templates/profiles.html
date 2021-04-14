@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ "test" }}{% endblock %}
+
+{% block content %}
+<div class="container mt-3">
+  {% for company in companies %}
+  <style>
+    a {
+      color: inherit;
+      /* blue colors for links too */
+      text-decoration: inherit;
+      /* no underline */
+    }
+  </style>
+  <a href="{{company.id}}">
+    <div class="card float-left ml-2" style="width:20rem;margin:20px 0 24px 0">
+      <img class="card-img-top" src="{{company.logo}}" alt="image" style="width:100%;height: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title">{{ company.name }}</h4>
+        <p class="card-text">
+          <b>Telefon</b> {{ company.phone }}</br><b>E-Mail</b> {{ company.mail }}
+        </p>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -5,7 +5,11 @@ from django.template import loader
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    template = loader.get_template('profiles.html')
+    context = {
+        'companies': Company.objects.all(),
+    }
+    return HttpResponse(template.render(context, request))
 
 def profile(request, company_id):
     company = Company.objects.get(pk=company_id)
@@ -14,7 +18,7 @@ def profile(request, company_id):
         worker = workers[0]
     else:
         worker = None
-    template = loader.get_template('index.html')
+    template = loader.get_template('profile.html')
 
     context = {
         'company': company,
