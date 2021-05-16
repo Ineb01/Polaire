@@ -1,12 +1,15 @@
 from django.contrib import admin
 
-from profiles.models import Company, Person
+from .models import Company, Person, Adress
 
-# Register your models here.
+class AdressAdmin(admin.StackedInline):
+    model = Adress
+
+class PersonAdmin(admin.StackedInline):
+    model = Person
+
 class CompanyAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None , {'fields': ['name', 'logo', 'company_type', 'phone', 'mail', 'adress', 'country', 'business', 'validated', 'link_social_media' ]}),
-    ]
+    inlines = [AdressAdmin, PersonAdmin]
 
 class PersonAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -15,4 +18,3 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Company, CompanyAdmin)
-admin.site.register(Person, PersonAdmin)

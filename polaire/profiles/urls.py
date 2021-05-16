@@ -1,8 +1,14 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
 
 from . import views
 
+
+router = routers.DefaultRouter()
+router.register(r'profiles', views.CompaniesViewSet)
+
+
+
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('<int:company_id>/', views.profile, name='profile'),
+    path('', include(router.urls)),
 ]

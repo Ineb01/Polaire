@@ -1,7 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from profiles.models import Company, Person
-from django.template import loader
+from rest_framework import viewsets, status
+from .models import Company , CompanySerializer, Person
+
+
+class CompaniesViewSet(viewsets.ModelViewSet):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+        
+
 
 # Create your views here.
 def index(request):

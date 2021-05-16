@@ -1,4 +1,10 @@
+from typing import Mapping
 from django.db import models
+from django.db.models.query_utils import PathInfo
+from rest_framework import serializers
+
+
+
 
 class Company(models.Model):
     COMPANY_TYPE = [
@@ -12,8 +18,7 @@ class Company(models.Model):
     name = models.CharField(max_length=30)
     phone = models.CharField(max_length=30)
     mail = models.CharField(max_length=30)
-    adress = models.CharField(max_length=30)
-    country = models.CharField(max_length=30)
+
     BUSINESS = [
         ('Fotograf', 'Fotograf'),
         ('Visagist', 'Visagist'),
@@ -27,6 +32,9 @@ class Company(models.Model):
     
     validated = models.BooleanField(default=False)
     link_social_media = models.CharField(max_length=400)
+
+    def __str__(self):
+        return self.name
 
 class Person(models.Model):
     
@@ -57,12 +65,13 @@ class Person(models.Model):
 
     title_last = models.CharField(max_length=10, choices=TITLE_LAST, default='none')
     
-    works_at = models.ForeignKey(
+    company = models.ForeignKey(
         Company,
         on_delete=models.CASCADE,
         verbose_name="Company",
         blank=True,
         null=True,
+        unique=True,
     )
 
     SEX = [
@@ -77,9 +86,56 @@ class Person(models.Model):
     phone = models.CharField(max_length=30)
     mail = models.CharField(max_length=40)
 
+class PersonSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Person
+        fields = '__all__'
     
+class Adress(models.Model):
+    street = models.CharField(max_length=30)
+    house = models.IntegerField()
+    city = models.CharField(max_length=30)
+    state = models.CharField(max_length=30)
+    country = models.CharField(max_length=30)
 
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        verbose_name="Company",
+        blank=True,
+        null=True,
+        unique=True,
+    )
 
+class AdressSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Adress
+        fields = '__all__'
+
+class CompanySerializer(serializers.ModelSerializer):
+    adress = AdressSerializer(many=True, read_only=True, source='adress_set')
+    worker = PersonSerializer(many=True, read_only=True, source='person_set')
+
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response['adress'] = AdressSerializer(Adress.objects.filter(company=instance)[0]).data
+        response['worker'] = PersonSerializer(Person.objects.filter(company=instance)[0]).data
+        return response
+
+    class Meta:
+        model = Company
+        fields = '__all__'
+        extra_fields = ['adress', 'worker']
+
+    def get_field_names(self, declared_fields, info):
+        expanded_fields = super(CompanySerializer, self).get_field_names(declared_fields, info)
+
+        if getattr(self.Meta, 'extra_fields', None):
+            return expanded_fields + self.Meta.extra_fields
+        else:
+            return expanded_fields
+    
     
     
 
