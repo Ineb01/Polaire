@@ -1,0 +1,42 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+#topper{
+    background-color: $primary;
+    color: $secondary;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    font-size: 70px;
+    padding: 20px;
+    padding-top: 80px;
+}
+
+#margin{
+    padding-top: 80px;
+}
+
+#firstInfo{
+    margin: auto;
+    padding: auto;
+    text-align: center;
+}
+
+li{
+    display: inline-block;
+    max-width: 800px;
+    width: 70%;
+    margin: 20px;
+}
+
+#furtherInformation{
+    text-align: center;
+}
+
+#body{
+    width: 100%;
+}
+
+ol{
+    width: 100%;
+}

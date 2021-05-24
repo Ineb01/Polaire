@@ -1,0 +1,12 @@
+
+#companyTable{
+    top: 20px;
+    position: relative;
+    width: 100%;
+}
+
+li{
+    list-style-type: none;
+    display: inline-block;
+}
+

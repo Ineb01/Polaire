@@ -1,0 +1,20 @@
+{
+  "_id":1,
+  "name":"Micosoft",
+  "phone":"+123412",
+  "mail":"abcd@microsoft.com",
+  "address":{
+    "street":"Applestreet",
+    "house":"2",
+    "City":"S.F.",
+    "Country":"CA",
+    "country":"USA"
+  },
+  "worker":{
+    "first_name":"Maxina",
+    "last_name":"Mustrerfrau",
+    "title":"BA",
+    "phone":"+123412-2",
+    "mail":"mm@microsoft.com"
+  }
+}

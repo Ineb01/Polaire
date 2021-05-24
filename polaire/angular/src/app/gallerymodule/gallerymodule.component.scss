@@ -1,0 +1,12 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+#carouselExampleControls{
+    border-radius: 6px;
+    width:100%;
+}
+
+img{
+    border-radius: 6px;
+}

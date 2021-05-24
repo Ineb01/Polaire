@@ -1,0 +1,39 @@
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0" id="underHeader">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Show filters
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Country
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" *ngFor="let country of countryList" (click)="addCountryFilter(country)"> {{ country }} </a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      City
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" *ngFor="let city of cityList" (click)="addCityFilter(city)">{{ city.name }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ol>
+        <li class="badge badge-secondary" *ngFor="let filter of filters" id="filters">
+            <span *ngIf="filter.type != city; then noCity else City"></span>
+            <ng-template #noCity>{{ filter.value }} </ng-template>
+            <ng-template #City>{{ filter.value.name }} </ng-template>
+            <button type="button" class="btn btn-outline-danger" id="smallbutton" (click)="removeFilter(filter)">X</button>
+        </li>
+    </ol>
+</div>

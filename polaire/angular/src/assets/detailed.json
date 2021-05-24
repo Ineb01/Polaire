@@ -1,0 +1,89 @@
+[
+  {
+    "_id":1,
+    "name":"Microsoft",
+    "phone":"+123412",
+    "mail":"abcd@microsoft.com",
+    "address":{
+      "street":"Applestreet",
+      "house":"2",
+      "City":"S.F.",
+      "Country":"CA",
+      "country":"USA"
+    },
+    "worker":{
+      "firstname":"Maxina",
+      "lastname":"Mustrerfrau",
+      "title":"BA",
+      "phone":"+123412-2",
+      "mail":"mm@microsoft.com"
+    },
+    "modules":[
+      {
+        "type": "text",
+        "content":"This is a description of the company it may contain some html tags such as <b>bold</b>, <i>italic</i> or <a href='https://google.at'>this</a>"
+      },
+      {
+        "type": "gallery",
+        "content":{
+          "pictures": [
+            "https://i.imgur.com/YuvqIrI.jpeg",
+            "https://i.imgur.com/KxD6dw7.jpeg",
+            "https://i.imgur.com/MF4GEnl.jpeg",
+            "https://i.imgur.com/JpOuHuJ.jpg"
+          ]
+        }
+      },
+      {
+        "type": "picture",
+        "content":{
+          "src":"https://i.imgur.com/4JaI4Cr.jpg"
+        }
+      },
+      {
+        "type": "social",
+        "content":{
+          "platforms":[
+            {
+              "platform":"twitter",
+              "link":"https://twitter.com"
+            },
+            {
+              "platform":"facebook",
+              "link":"https://facebook.com"
+            },
+            {
+              "platform":"instagram",
+              "link":"https://instagram.com"
+            }
+          ]
+        }
+      },
+      {
+        "type": "collage",
+        "content":{
+          "type":"hor",
+          "sub":[
+            {
+              "type":"pic",
+              "src":"https://i.imgur.com/j2Qe9OR.jpg"
+            },
+            {
+              "type":"ver",
+              "sub":[
+                {
+                  "type":"pic",
+                  "src":"https://i.imgur.com/dq7o2S7.jpeg"
+                },
+                {
+                  "type":"pic",
+                  "src":"https://i.imgur.com/HCv1Qs4.jpg"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

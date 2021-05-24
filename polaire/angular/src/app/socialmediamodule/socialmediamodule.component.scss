@@ -1,0 +1,21 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+li{
+    display: inline-block;
+}
+
+#socialmediaModule{
+    width: 100%;
+}
+
+i{
+    color: grey;
+    font-size: 25px;
+}
+
+button{
+    border-color: grey;
+    margin: 10px;
+}

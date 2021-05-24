@@ -1,0 +1,15 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+#error{
+    margin: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+
+}
+
+.card-header{
+    color: $danger;
+    font-size: 30px;
+}

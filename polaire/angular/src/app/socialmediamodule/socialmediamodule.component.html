@@ -1,0 +1,12 @@
+<div class="card text-white bg-secondary mb-3" id="socialmediaModule">
+    <div class="card-header">Social Media contacts</div>
+    <ol>
+        <li *ngFor="let socialmedia of module.content.platforms">
+            <a href="{{ socialmedia.link }}" >
+                <button type="button" class="btn btn-outline-light">
+                    <i class="fab fa-{{socialmedia.platform}}"> {{ socialmedia.platform }}</i>
+                </button>
+            </a>
+        </li>
+    </ol>
+</div>

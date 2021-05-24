@@ -1,0 +1,23 @@
+<div id="body">
+    <div *ngIf="company != null">
+        <h1 id="topper">{{ company.name }}</h1>
+        <ol id="firstInfo">
+            <li>
+                <app-worker [worker]="company.worker" class="inlineblock"></app-worker>
+                <app-textmodule [module]="company.modules[0]" class="inlineblock"></app-textmodule>
+            </li>
+        </ol>
+        <ol *ngFor="let module of company.modules" id="furtherInformation">
+            <div *ngIf="module != company.modules[0]">
+                <li *ngIf="module.type == 'gallery'" class="notinlineblock"><app-gallerymodule [module]="module"></app-gallerymodule></li>
+                <li *ngIf="module.type == 'picture'" class="notinlineblock"><app-picutremodule [module]="module"></app-picutremodule></li>
+                <li *ngIf="module.type == 'social'" class="notinlineblock"><app-socialmediamodule [module]="module"></app-socialmediamodule></li>
+                <li *ngIf="module.type == 'collage'" class="notinlineblock"><app-collagemodule [content]="module.content"></app-collagemodule></li>
+            </div>
+        </ol>
+    </div>
+    <div *ngIf="company == null">
+        <p id="margin"></p>
+        <app-error></app-error>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="card" style="width: 12rem;" id="companyField" >
+    <img class="card-img-top" src="{{company.profilPicURL}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{ company.name }}</h5>
+      <p> <b class="bold">Phone</b> {{ company.phone }}</p>
+    <p> <b class="bold">Mail</b> {{ company.mail }}</p>
+    <a [routerLink]="['/details', company.id]" class="btn btn-light">Go to Company</a>
+    </div>
+</div>

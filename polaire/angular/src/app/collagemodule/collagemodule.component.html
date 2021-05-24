@@ -1,0 +1,14 @@
+<div class="card border-primary mb-3">
+  <ol *ngIf="content.type == 'hor'" class="hor">
+    <li *ngFor="let content of content.sub" class="hor">
+      <img  *ngIf="content.type == 'pic'" src="{{content.src}}" alt="picture">
+      <app-collagemodule *ngIf="content.type != 'pic'" [content]="content"></app-collagemodule>
+      </li>
+  </ol>
+  <ol *ngIf="content.type == 'ver'" class="ver">
+    <li *ngFor="let content of content.sub" class="ver">
+      <img  *ngIf="content.type == 'pic'" src="{{content.src}}" alt="picture">
+      <app-collagemodule *ngIf="content.type != 'pic'" [content]="content"></app-collagemodule>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,30 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+
+img{
+    margin-top: 10px;
+}
+
+#header{
+    position: fixed;
+    background-color: rgb(231, 231, 231);
+    width: 100%;
+    height: 70px;
+    margin-top: 0;
+    z-index: 1;
+    border-bottom: 1px rgb(114, 112, 112) solid;
+    z-index: 2;
+}
+
+
+#profils{
+    float: right;
+    color: rgb(114, 112, 112);
+    text-decoration: none;
+}
+
+.headelement{
+    padding: 20px;
+}

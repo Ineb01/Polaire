@@ -1,0 +1,44 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+#underHeader{
+    margin-top: 70px;
+}
+
+button{
+    color: rgb(168, 164, 164);
+    display: inline-block;
+}
+
+#smallbutton{
+    padding: 0;
+    padding-left: 4px;
+    padding-right:4px;
+    border-radius: 100%;
+    font-size: 8px;
+    color: red;
+}
+
+#filters{
+    margin-left: 25px;
+    background-color: rgb(123, 187, 166);
+}
+
+#headingTwo{
+    background-color: $primary;
+}
+
+#headingTwo button{
+    color:rgb(201, 238, 226);
+}
+
+.card-body{
+    background-color:rgb(201, 238, 226);
+    height: 70px;
+}
+
+.card-body button{
+    float: left;
+    margin-left: 30px;
+}
