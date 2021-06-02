@@ -1,6 +1,6 @@
-<div (click) = "rerender()">
+<div>
     <app-filterbar></app-filterbar>
-    <ol id="companyTable" (click)="rerender()">
+    <ol id="companyTable">
         <li *ngFor="let company of companyList">
             <app-company  [company]="company">
             </app-company>

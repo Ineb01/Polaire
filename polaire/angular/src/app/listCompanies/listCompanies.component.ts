@@ -9,18 +9,15 @@ import { Component, NgZone, OnChanges, OnInit, SimpleChanges, ɵRender3NgModuleR
 })
 export class ListCompaniesComponent implements OnInit {
 
-  companyList: Company[];
+  companyList!: Company[];
   DatabaseService: DatabaseService;
 
   constructor(DatabaseService: DatabaseService) {
-    this.companyList = DatabaseService.companiesExtern;
     this.DatabaseService = DatabaseService;
   }
 
   ngOnInit(): void {
-  }
-
-  rerender(){
-    this.companyList = this.DatabaseService.companiesExtern;
+    this.DatabaseService.getCompanies()
+        .subscribe(data => this.companyList = data)
   }
 }

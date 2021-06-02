@@ -1,5 +1,4 @@
 import { Address } from "./Address";
-import { City } from "./City";
 import { Worker } from "./Worker";
 import { Module } from "./Module";
 
@@ -12,9 +11,8 @@ export class DetailedCompany{
     worker: Worker;
     modules: Module[];
     profilPicURL: string;
-    SetCity: City;
 
-    constructor(id: number, name: string, phone: string, mail: string, address: Address, worker: Worker, modules: Module[], profilpicURL: string, SetCity: City){
+    constructor(id: number, name: string, phone: string, mail: string, address: Address, worker: Worker, modules: Module[], profilpicURL: string){
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -23,6 +21,5 @@ export class DetailedCompany{
         this.worker = worker;
         this.modules = modules;
         this.profilPicURL = profilpicURL;
-        this.SetCity = SetCity;
     }
 }
