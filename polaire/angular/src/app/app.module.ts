@@ -20,6 +20,7 @@ import { PicutremoduleComponent } from './picutremodule/picutremodule.component'
 import { SocialmediamoduleComponent } from './socialmediamodule/socialmediamodule.component';
 import { CollagemoduleComponent } from './collagemodule/collagemodule.component';
 import { ErrorComponent } from './error/error.component';
+import { CreateCompanyComponent } from './create-company/create-company.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ErrorComponent } from './error/error.component';
     PicutremoduleComponent,
     SocialmediamoduleComponent,
     CollagemoduleComponent,
-    ErrorComponent
+    ErrorComponent,
+    CreateCompanyComponent
   ],
   imports: [
     BrowserModule,

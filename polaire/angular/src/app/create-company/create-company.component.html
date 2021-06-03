@@ -1,0 +1,68 @@
+<form>
+    <fieldset>
+      <legend>Please fill out the from bellow to create a new account</legend>
+      <div class="form-group">
+        <label for="companyName" class="form-label mt-4">Company name</label>
+        <input type="text" class="form-control" id="companyName" aria-describedby="emailHelp" placeholder="Company name">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber" class="form-labelmt-4" id="">Phone number</label>
+        <input type="phoneNumber" class="form-control" id="phoneNumber" placeholder="Phone number">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+        <input type="mail" class="form-control" id="mail"  placeholder="Enter email">
+        <small id="mailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="form-group">
+        <label for="companyType" class="form-label mt-4">Company Type</label>
+        <select class="form-select" id="companyType">
+          <option>Start up</option>
+          <option>EPU</option>
+          <option>Public Company</option>
+          <option>Private Company</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="logoLink" class="form-label mt-4">Link to your Logo</label>
+        <input type="logoLink" class="form-control" id="logoLink" placeholder="Link to your Logo">
+        <small id="emailHelp" class="form-text text-muted">Please make sure to enter a working link in order to present your company in the best possible way</small>
+      </div>
+      <div class="form-group">
+        <label for="buisness" class="form-label mt-4">Business</label>
+        <input type="business" class="form-control" id="business" placeholder="What kind of business do you run">
+      </div>
+      <div class="form-group">
+        <label for="socialMedia" class="form-label mt-4">Link to your social media</label>
+        <input type="socialMedia" class="form-control" id="socialMedia" placeholder="social media link">
+      </div>
+
+      <div class="form-group">
+        <label for="address" class="form-label mt-4">Address</label>
+        <input type="street" class="form-control" id="street" placeholder="Street">
+        <input type="house" class="form-control" id="house" placeholder="House">
+        <input type="city" class="form-control" id="city" placeholder="City">
+        <input type="state" class="form-control" id="state" placeholder="State">
+        <input type="country" class="form-control" id="country" placeholder="Country">
+      </div>
+
+      <div class="form-group">
+        <label for="worker" class="form-label mt-4">Worker</label>
+        <input type="titleFirst" class="form-control" id="titleFirst" placeholder="First Title">
+        <input type="firstName" class="form-control" id="firstName" placeholder="First Name">
+        <input type="lastName" class="form-control" id="lastName" placeholder="Last Name">
+        <input type="titleLast" class="form-control" id="titleLast" placeholder="Last Title">
+        <label for="gender" class="form-label mt-4">Gender</label>
+        <select class="form-select" id="gender">
+          <option>Female</option>
+          <option>Male</option>
+          <option>Other</option>
+        </select>
+        <input type="pictureLink" class="form-control" id="pictureLink" placeholder="Link to Picture">
+        <input type="phoneWorker" class="form-control" id="phoneWorker" placeholder="Worker's Phone number">
+        <input type="mailWorker" class="form-control" id="mailWorker" placeholder="Worker's mail address">
+      </div>
+      <a class="btn btn-primary" (click)="submit()">submit</a>
+    </fieldset>
+  </form>

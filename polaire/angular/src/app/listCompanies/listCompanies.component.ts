@@ -5,7 +5,7 @@ import { Component, NgZone, OnChanges, OnInit, SimpleChanges, ɵRender3NgModuleR
 @Component({
   selector: 'app-list-companies',
   templateUrl: './listCompanies.component.html',
-  styleUrls: ['./listCompanies.component.css']
+  styleUrls: ['./listCompanies.component.scss']
 })
 export class ListCompaniesComponent implements OnInit {
 
