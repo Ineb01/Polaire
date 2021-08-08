@@ -1,19 +1,20 @@
+
 import { Injectable } from '@angular/core';
-import detailedInformation from '../assets/detailed.json';
-import { DetailedCompany } from './models/detailedCompany';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { DetailedCompany } from './models/DetailedCompany';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetailedDatabaseService {
 
-  detailedCompanies: DetailedCompany[];
+  companies_url:string = "/profiles/profiles";
 
-  constructor() { 
-    this.detailedCompanies = detailedInformation;
+  constructor(private client: HttpClient) {
   }
 
-  getCompany(index:number){
-    return this.detailedCompanies[index-1];
+  getDetailedCompany(index:number):Observable<DetailedCompany> {
+    return this.client.get<DetailedCompany>(this.companies_url+'/'+index);
   }
 }

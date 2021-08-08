@@ -26,4 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', serve,
         kwargs={'path': 'index.html'}),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^(?!/static/.*)(?P<path>.*\..*)$',
+        RedirectView.as_view(url='/static/%(path)s'))
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static('assets', document_root='static/assets')

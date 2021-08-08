@@ -10,9 +10,10 @@ export class DetailedCompany{
     address: Address;
     worker: Worker;
     modules: Module[];
-    profilPicURL: string;
+    logo: string;
+    business: string;
 
-    constructor(id: number, name: string, phone: string, mail: string, address: Address, worker: Worker, modules: Module[], profilpicURL: string){
+    constructor(id: number, name: string, phone: string, mail: string, address: Address, worker: Worker, modules: Module[], logo: string, business:string){
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -20,6 +21,7 @@ export class DetailedCompany{
         this.address = address;
         this.worker = worker;
         this.modules = modules;
-        this.profilPicURL = profilpicURL;
+        this.logo = logo;
+        this.business = business;
     }
 }
