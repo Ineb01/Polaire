@@ -1,17 +1,20 @@
-import { City } from './City';
 export class Address{
+    id:Number;
     street:String;
     house: String;
-    City: String
-    Country: String;
+    city: String
+    state: String;
     country: String;
+    company:Number;
 
-    constructor(street: String, house: String, City: String, Country: String, country: String){
+    constructor(id: Number, street: String, house: String, city: String, state: String, country: String, company:Number){
+        this.id = id;
         this.street = street;
         this.house = house;
-        this.Country = Country;
+        this.city = city;
+        this.state = state;
         this.country = country;
-        this.City = City;
+        this.company = company;
     }
 
 }

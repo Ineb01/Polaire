@@ -1,0 +1,11 @@
+@import "~bootswatch/dist/minty/variables";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootswatch/dist/minty/bootswatch";
+
+*{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+legend{
+    padding-top: 70px;
+}

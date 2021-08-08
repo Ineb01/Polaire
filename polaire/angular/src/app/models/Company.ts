@@ -1,22 +1,15 @@
 import { Address } from "./Address";
-import { City } from "./City";
 
-export class Company{
+export interface Company{
     id: number;
-    name: string;
-    phone: string;
-    mail: string;
     address: Address;
-    profilPicURL: string;
-    SetCity: City;
-
-    constructor(id: number, name: string, phone: string, mail: string, address: Address, profilpicURL: string, SetCity: City){
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.mail = mail;
-        this.address = address;
-        this.profilPicURL = profilpicURL;
-        this.SetCity = SetCity;
-    }
+    worker: Worker;
+    company_type: String;
+    logo: String;
+    name: String;
+    phone: String;
+    mail: String;
+    business: String;
+    validated: Boolean;
+    link_social_media: String;
 }

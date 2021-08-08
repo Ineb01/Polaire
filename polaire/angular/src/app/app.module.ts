@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithComponentFactories, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { PicutremoduleComponent } from './picutremodule/picutremodule.component'
 import { SocialmediamoduleComponent } from './socialmediamodule/socialmediamodule.component';
 import { CollagemoduleComponent } from './collagemodule/collagemodule.component';
 import { ErrorComponent } from './error/error.component';
+import { CreateCompanyComponent } from './create-company/create-company.component';
 
 
 @NgModule({
@@ -36,13 +38,15 @@ import { ErrorComponent } from './error/error.component';
     PicutremoduleComponent,
     SocialmediamoduleComponent,
     CollagemoduleComponent,
-    ErrorComponent
+    ErrorComponent,
+    CreateCompanyComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   exports: [RouterModule],
   providers: [],

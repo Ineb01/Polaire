@@ -5,22 +5,19 @@ import { Component, NgZone, OnChanges, OnInit, SimpleChanges, ɵRender3NgModuleR
 @Component({
   selector: 'app-list-companies',
   templateUrl: './listCompanies.component.html',
-  styleUrls: ['./listCompanies.component.css']
+  styleUrls: ['./listCompanies.component.scss']
 })
 export class ListCompaniesComponent implements OnInit {
 
-  companyList: Company[];
+  companyList!: Company[];
   DatabaseService: DatabaseService;
 
   constructor(DatabaseService: DatabaseService) {
-    this.companyList = DatabaseService.companiesExtern;
     this.DatabaseService = DatabaseService;
   }
 
   ngOnInit(): void {
-  }
-
-  rerender(){
-    this.companyList = this.DatabaseService.companiesExtern;
+    this.DatabaseService.getCompanies()
+        .subscribe(data => this.companyList = data)
   }
 }
