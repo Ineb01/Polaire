@@ -30,7 +30,7 @@ SECRET_KEY = 'v2_kyc(0^p6(5#8j+bmd(k_4lj5r#x+t@8ofvv*0uu2s5x8d*b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['polaire.digitalphoenix.at', '127.0.0.1']
 
 
 # Application definition
@@ -124,7 +124,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static/",
 ]

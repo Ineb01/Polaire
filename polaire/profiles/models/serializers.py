@@ -1,6 +1,8 @@
-from . import Adress, Person, Company
+from . import Adress, Person, Company, Module
 
 from rest_framework import serializers
+
+import json
 
 class AdressSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,3 +39,18 @@ class CompanySerializer(serializers.ModelSerializer):
         else:
             return expanded_fields
     
+class ModuleSerializer(serializers.ModelSerializer):
+
+    attributes = serializers.JSONField()
+
+
+    def to_representation(self, instance):
+        ret = super(ModuleSerializer, self).to_representation(instance)
+        # check the request is list view or detail view
+        is_list_view = isinstance(self.instance, list)
+        extra_ret = json.loads(instance.attributes)
+        ret.update(extra_ret)
+        return ret
+    class Meta:
+        model = Module
+        fields = ['company', 'attributes']

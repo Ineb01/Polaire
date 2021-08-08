@@ -11,7 +11,7 @@
       "Country":"CA",
       "country":"USA"
     },
-    "profilPicURL": "../assets/microsoft-80660_960_720.png"
+    "profilPicURL": "/static/assets/microsoft-80660_960_720.png"
   },
   {
     "id":2,
@@ -25,7 +25,7 @@
       "Country":"CA",
       "country":"USA"
     },
-    "profilPicURL": "../assets/Apple.png"
+    "profilPicURL": "/static/assets/Apple.png"
   },
   {
     "id":3,
@@ -39,7 +39,7 @@
       "Country":"OÖ",
       "country":"Austria"
     },
-    "profilPicURL": "../assets/Polaire.png"
+    "profilPicURL": "/static/assets/Polaire.png"
   },
   {
     "id":4,
@@ -53,7 +53,7 @@
       "Country":"Berlin",
       "country":"Germany"
     },
-    "profilPicURL": "../assets/Polaire.png"
+    "profilPicURL": "/static/assets/Polaire.png"
   },
   {
     "id":5,
@@ -67,6 +67,6 @@
       "Country":"Wien",
       "country":"Austria"
     },
-    "profilPicURL": "../assets/Apple.png"
+    "profilPicURL": "/static/assets/Apple.png"
   }
 ]

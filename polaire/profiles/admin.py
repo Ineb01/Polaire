@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Company, Person, Adress
+from .models import Company, Person, Adress, Module
 
 class AdressAdmin(admin.StackedInline):
     model = Adress
@@ -17,4 +17,10 @@ class PersonAdmin(admin.ModelAdmin):
     ]
 
 
+class ModuleAdmin(admin.ModelAdmin):
+    model = Module
+
+
 admin.site.register(Company, CompanyAdmin)
+
+admin.site.register(Module, ModuleAdmin)

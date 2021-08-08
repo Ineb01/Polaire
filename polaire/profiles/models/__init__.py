@@ -1,5 +1,6 @@
 from typing import Mapping
 from django.db import models
+from django.db.models.fields import CharField
 from django.db.models.query_utils import PathInfo
 
 
@@ -100,3 +101,13 @@ class Adress(models.Model):
         unique=True,
     )
 
+class Module(models.Model):
+    attributes = models.CharField(max_length=1000)
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        verbose_name="Company",
+        blank=True,
+        null=True,
+        unique=True,
+    )
