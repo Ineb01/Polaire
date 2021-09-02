@@ -21,11 +21,14 @@ from django.views.generic import RedirectView
 
 from django.conf.urls.static import static
 from django.conf import settings
+
+from rest_framework_jwt.views import obtain_jwt_token
+
+
 urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('admin/', admin.site.urls),
-    url(r'^$', serve,
-        kwargs={'path': 'index.html'}),
-    url(r'^(?!/static/.*)(?P<path>.*\..*)$',
-        RedirectView.as_view(url='/static/%(path)s'))
+    url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^$', serve, kwargs={'path': 'index.html'}),
+    url(r'^(?!/static/.*)(?P<path>.*\..*)$', RedirectView.as_view(url='/static/%(path)s'))
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static('assets', document_root='static/assets')
