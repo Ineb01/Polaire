@@ -102,12 +102,20 @@ class Adress(models.Model):
     )
 
 class Module(models.Model):
-    attributes = models.CharField(max_length=1000)
+    content = models.CharField(max_length=1000)
+    TYPE = [
+        ('text', 'text'),
+        ('gallery', 'gallery'),
+        ('picture', 'picture'),
+        ('sozial', 'sozial'),
+        ('collage', 'collage'),
+    ]
+    type = models.CharField(max_length=10, choices=TYPE, default='o')
     company = models.ForeignKey(
         Company,
         on_delete=models.CASCADE,
         verbose_name="Company",
         blank=True,
         null=True,
-        unique=True,
+        unique=False,
     )

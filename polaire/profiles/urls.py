@@ -6,8 +6,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'profiles', views.CompaniesViewSet)
-router.register(r'modules',views.ModuleViewSet)
-
+router.register(r'modules/(?P<company>[^/.]+)', views.ModuleViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
