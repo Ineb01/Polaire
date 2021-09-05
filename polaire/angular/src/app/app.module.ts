@@ -21,6 +21,7 @@ import { SocialmediamoduleComponent } from './socialmediamodule/socialmediamodul
 import { CollagemoduleComponent } from './collagemodule/collagemodule.component';
 import { ErrorComponent } from './error/error.component';
 import { CreateCompanyComponent } from './create-company/create-company.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { CreateCompanyComponent } from './create-company/create-company.componen
     SocialmediamoduleComponent,
     CollagemoduleComponent,
     ErrorComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
