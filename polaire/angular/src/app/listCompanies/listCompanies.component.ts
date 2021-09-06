@@ -17,7 +17,6 @@ export class ListCompaniesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.DatabaseService.getCompanies()
-        .subscribe(data => this.companyList = data)
+    this.companyList = this.DatabaseService.getCompanies()
   }
 }
