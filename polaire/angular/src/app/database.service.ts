@@ -32,14 +32,14 @@ export class DatabaseService {
 
     this.client.get<Company[]>("http://127.0.0.1:8000/profiles/profiles", httpOptions)
       .subscribe(
-        data => {
-          console.log(data);
-          profiles = data;
+        request => {
+          profiles = request;
+          console.log("profiles: " + request);
         },
-        error => this.route.navigate(['/', 'login'])
+        error => {
+          this.route.navigate(['/', 'login'])
+        }
       )
-
-    console.log(profiles);
     return profiles;
     //return this.client.get<Company[]>("http://127.0.0.1:8000/profiles/profiles", httpOptions);
   }

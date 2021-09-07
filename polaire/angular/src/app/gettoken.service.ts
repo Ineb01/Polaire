@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { TokenValue } from './models/TokenValue'
 
 @Injectable({
@@ -13,15 +14,14 @@ export class GettokenService {
   constructor(private client: HttpClient, private route: Router) {
   }
 
-  login(username:string, password:string){
-    //Make the post request and safe the token
-    this.client.post<any>('http://127.0.0.1:8000/api-token-auth/',{"username": username, "password": password}).subscribe(
-      data => {
-        this.token = data; 
-        this.route.navigate(['/', '/..'])
-      })
-    console.log(this.token.token + " in the login function should be the token");
-    this.saveTokenToLocalStorage(this.token.token);
+  async login(username:string, password:string){
+    this.client.post<TokenValue>('http://127.0.0.1:8000/api-token-auth/',{"username": username, "password": password})
+      .subscribe(data => {
+        this.token = data;
+        this.saveTokenToLocalStorage(this.token.token);
+        //TODO open new rout
+      }
+    )                 
   }
 
   getToken(){
