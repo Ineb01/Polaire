@@ -1,6 +1,7 @@
 import { DatabaseService } from './../database.service';
 import { Company } from '../models/Company';
 import { Component, NgZone, OnChanges, OnInit, SimpleChanges, ɵRender3NgModuleRef } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-list-companies',
@@ -17,6 +18,6 @@ export class ListCompaniesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.companyList = this.DatabaseService.getCompanies()
+    this.DatabaseService.getCompanies().subscribe(data => this.companyList = data);
   }
 }
