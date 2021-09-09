@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   login(){
     var username:string = (<HTMLInputElement>document.getElementById("username")).value;
     var password:string = (<HTMLInputElement>document.getElementById("password")).value;
+    
     this.GettockenService.login(username, password);
   }
-
 }

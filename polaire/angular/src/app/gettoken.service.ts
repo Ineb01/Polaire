@@ -16,12 +16,27 @@ export class GettokenService {
 
   async login(username:string, password:string){
     this.client.post<TokenValue>('http://127.0.0.1:8000/api-token-auth/',{"username": username, "password": password})
-      .subscribe(data => {
+      .subscribe(
+      data => {
         this.token = data;
         this.saveTokenToLocalStorage(this.token.token);
-        //TODO open new rout
+        this.route.navigate(['/..']);
+      },
+      error => {
+        this.changeLoginPage();
       }
-    )                 
+    )              
+  }
+
+  changeLoginPage(){
+    let loginInfo = <HTMLElement>document.getElementById("loginInformation");
+    loginInfo.innerHTML = "Username or Password are invalid";
+
+    let usernameInput = document.getElementById("username");
+    usernameInput?.classList.add("is-invalid");
+
+    let passwordInput = document.getElementById("password");
+    passwordInput?.classList.add("is-invalid");
   }
 
   getToken(){
