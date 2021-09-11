@@ -2,7 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*node_modules*
+
+#custom
+polaire/angular/node_modules/
+polaire/static/
 
 # C extensions
 *.so

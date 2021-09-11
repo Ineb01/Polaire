@@ -1,13 +1,9 @@
 {
-  "name": "meine-webseite",
-  "version": "0.0.0",
+  "name": "polaire-angular",
+  "version": "0.0.1",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "watch": "ng build --output-path=../static --watch",
+    "build": "ng build --output-path=../static"
   },
   "private": true,
   "dependencies": {
