@@ -1,7 +1,7 @@
-import { DetailedDatabaseService } from './../detailed-database.service';
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { DatabaseService } from '../database.service';
 import { DetailedCompany } from '../models/DetailedCompany';
 
 @Component({
@@ -15,8 +15,10 @@ export class DetailedInformationComponent implements OnInit {
 
   @Input() test!:String;
 
-  constructor(private route: ActivatedRoute, DetailedDatabaseService: DetailedDatabaseService) {
-    DetailedDatabaseService.getDetailedCompany(this.route.snapshot.params['id']).subscribe(data => this.company = data);
+  constructor(private route: ActivatedRoute, DatabaseService: DatabaseService) {
+
+    console.log("TEST!");
+    DatabaseService.getDetailedCompany(this.route.snapshot.params['id']).subscribe(data => this.company = data);
     window.scroll(0,0);
   }
 
