@@ -18,7 +18,12 @@ export class GettokenService {
   constructor(private client: HttpClient, private route: Router) {
   }
 
-  async login(username:string, password:string){
+  logout(){
+    this.token = new TokenValue("");
+    localStorage.clear();
+  }
+
+  login(username:string, password:string){
     this.client.post<TokenValue>(this.base_url+this.auth_url,{"username": username, "password": password})
       .subscribe(
       data => {
@@ -32,7 +37,7 @@ export class GettokenService {
     )              
   }
 
-  changeLoginPage(){
+  private changeLoginPage(){
     let loginInfo = <HTMLElement>document.getElementById("loginInformation");
     loginInfo.innerHTML = "Username or Password are invalid";
 
