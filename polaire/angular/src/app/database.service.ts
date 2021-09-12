@@ -12,6 +12,7 @@ import { DetailedCompany } from './models/DetailedCompany';
 export class DatabaseService {
 
   companies_url:string = "/profiles/profiles";
+  base_url:string = "";
   tokenService:GettokenService;
 
   constructor(private client: HttpClient, tokenService:GettokenService, private route:Router) {
@@ -28,7 +29,7 @@ export class DatabaseService {
       })
     };
 
-    this.client.get<Company[]>("http://127.0.0.1:8000/profiles/profiles", httpOptions)
+    this.client.get<Company[]>(this.base_url+this.companies_url, httpOptions)
       .subscribe(
         data => {
           console.log("data: " + data);
@@ -39,7 +40,7 @@ export class DatabaseService {
         }
       )
 
-    return this.client.get<Company[]>("http://127.0.0.1:8000/profiles/profiles", httpOptions);
+    return this.client.get<Company[]>(this.base_url+this.companies_url, httpOptions);
   }
 
   getDetailedCompany(id:number):Observable<DetailedCompany>{

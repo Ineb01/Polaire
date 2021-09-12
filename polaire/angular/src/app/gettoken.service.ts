@@ -7,7 +7,11 @@ import { TokenValue } from './models/TokenValue'
 @Injectable({
   providedIn: 'root'
 })
+
 export class GettokenService {
+
+  auth_url:string = "/api-token-auth/";
+  base_url:string = "";
 
   private token!:TokenValue;
 
@@ -15,7 +19,7 @@ export class GettokenService {
   }
 
   async login(username:string, password:string){
-    this.client.post<TokenValue>('http://127.0.0.1:8000/api-token-auth/',{"username": username, "password": password})
+    this.client.post<TokenValue>(this.base_url+this.auth_url,{"username": username, "password": password})
       .subscribe(
       data => {
         this.token = data;
