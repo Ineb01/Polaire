@@ -16,12 +16,30 @@ img{
     margin: 0;
 }
 
-#logInOut{
+#LogInOut{
+    width: 100px;
     margin-left: auto;
     margin-right: auto;
-    
+    display:inline;
 }
 
+#login{
+    margin:0;
+    padding:0;
+    display:inline;
+}
+
+#seperator{
+    width:10px;
+    display:inline;
+    color:$primary;
+}
+
+#logout{
+    margin:0;
+    padding:0;
+    display: inline;
+}
 
 #profils{
     float: right;

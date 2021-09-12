@@ -1,4 +1,6 @@
+import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GettokenService } from '../gettoken.service';
 
 @Component({
@@ -10,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   private GettokenService: GettokenService;
 
-  constructor(GettokenService: GettokenService) { 
+  constructor(GettokenService: GettokenService, private route:Router) { 
     this.GettokenService = GettokenService;
   }
 
@@ -19,6 +21,10 @@ export class HeaderComponent implements OnInit {
 
   logOut(){
     this.GettokenService.logout();
+  }
+
+  logIn(){
+    this.route.navigate(['/', 'login'])
   }
 
 }

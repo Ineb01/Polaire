@@ -6,10 +6,33 @@
     background-color: $primary;
     color: $secondary;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: center;
     font-size: 70px;
     padding: 20px;
     padding-top: 80px;
+    text-align: center;
+}
+
+#company{
+    max-width: 300px;
+    display:inline-block;
+    padding:10px;
+    height:250px;
+}
+
+#companyHeader{
+    top: -10px;
+    left: -10px;
+    width: 300px;
+}
+
+app-worker{
+    display:inline;
+    padding:10px;
+
+}
+
+card-boddy{
+    text-align: left;
 }
 
 #margin{
@@ -23,7 +46,8 @@
 }
 
 #logo{
-    width:200px;
+    width:85px;
+    padding:10px;
 }
 
 li{

@@ -17,7 +17,6 @@ export class DetailedInformationComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, DatabaseService: DatabaseService) {
 
-    console.log("TEST!");
     DatabaseService.getDetailedCompany(this.route.snapshot.params['id']).subscribe(data => this.company = data);
     window.scroll(0,0);
   }

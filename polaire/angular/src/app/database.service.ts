@@ -45,8 +45,6 @@ export class DatabaseService {
 
   getDetailedCompany(id:number):Observable<DetailedCompany>{
 
-    console.log("TEST");
-
     const token = this.tokenService.getToken();
 
     const httpOptions = {
@@ -55,12 +53,8 @@ export class DatabaseService {
       })
     };
 
-    console.log("http://127.0.0.1:8000/profiles/profiles/" + id);
-
     this.client.get<DetailedCompany>("http://127.0.0.1:8000/profiles/profiles/" + id, httpOptions)
       .subscribe(data => console.log(data), error => console.log(error));
-
-    console.log("test");
 
     return this.client.get<DetailedCompany>("http://127.0.0.1:8000/profiles/profiles/" + id, httpOptions)
   }

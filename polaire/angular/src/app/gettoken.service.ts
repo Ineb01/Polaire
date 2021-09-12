@@ -21,6 +21,7 @@ export class GettokenService {
   logout(){
     this.token = new TokenValue("");
     localStorage.clear();
+    window.location.reload();
   }
 
   login(username:string, password:string){
@@ -40,7 +41,7 @@ export class GettokenService {
   private changeLoginPage(){
     let loginInfo = <HTMLElement>document.getElementById("loginInformation");
     loginInfo.innerHTML = "Username or Password are invalid";
-
+ 
     let usernameInput = document.getElementById("username");
     usernameInput?.classList.add("is-invalid");
 

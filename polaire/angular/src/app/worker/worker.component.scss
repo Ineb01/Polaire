@@ -3,8 +3,32 @@
 @import "~bootswatch/dist/minty/bootswatch";
 
 #company{
-    width: 45%;
+    width: 450px;
     display: inline-block;
     height: auto;
     text-align: left;
+    height:250px;
+    top:19px;
+}
+
+#companyHeader.card-header{
+    top: -10px;
+    left: -10px;
+    width: 300px;
+}
+
+#workerInfo{
+    width:55%;
+    display:inline-block;
+}
+
+#picContainer{
+    display: inline-block;
+}
+
+#pic{
+    width:150px;
+    display:inline-block;
+    border-radius: 5px;
+    top:-45px;
 }
