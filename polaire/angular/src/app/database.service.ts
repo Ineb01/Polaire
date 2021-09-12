@@ -11,7 +11,7 @@ import { DetailedCompany } from './models/DetailedCompany';
 })
 export class DatabaseService {
 
-  companies_url:string = "/profiles/profiles";
+  companies_url:string = "/profiles/profiles/";
   base_url:string = "";
   tokenService:GettokenService;
 
@@ -53,9 +53,9 @@ export class DatabaseService {
       })
     };
 
-    this.client.get<DetailedCompany>("http://127.0.0.1:8000/profiles/profiles/" + id, httpOptions)
+    this.client.get<DetailedCompany>(this.base_url+this.companies_url + id, httpOptions)
       .subscribe(data => console.log(data), error => console.log(error));
 
-    return this.client.get<DetailedCompany>("http://127.0.0.1:8000/profiles/profiles/" + id, httpOptions)
+    return this.client.get<DetailedCompany>(this.base_url+this.companies_url + id, httpOptions)
   }
 }

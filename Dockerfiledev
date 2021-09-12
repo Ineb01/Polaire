@@ -27,5 +27,5 @@ RUN npm run-script build
 #entry
 WORKDIR /code
 EXPOSE 8000
-CMD pipenv install --system --deploy --ignore-pipfile; npm install --prefix ./polaire/angular ./polaire/angular/package.json; python polaire/manage.py runserver 0.0.0.0:8000 && npm start --prefix path/to/your/app 
+CMD pipenv install --system --deploy --ignore-pipfile; npm install --prefix ./polaire/angular ./polaire/angular; python polaire/manage.py runserver 0.0.0.0:8000 && npm start --prefix path/to/your/app 
 

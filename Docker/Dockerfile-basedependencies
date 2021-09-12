@@ -1,0 +1,13 @@
+# syntax=docker/dockerfile:1
+FROM python:3
+ENV PYTHONUNBUFFERED=1
+
+COPY .. /code
+
+#python dependencies
+RUN pip install pipenv
+
+#node dependencies
+RUN apt-get update 
+RUN apt-get install nodejs -y
+RUN apt-get install npm -y
