@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Module } from '../models/Module';
+import { Content } from '../models/Content';
 
 @Component({
   selector: 'app-textmodule',
@@ -9,9 +9,10 @@ import { Module } from '../models/Module';
 })
 export class TextmoduleComponent implements OnInit {
 
-  @Input() module!: Module;
+  @Input() content!: Content;
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
   }

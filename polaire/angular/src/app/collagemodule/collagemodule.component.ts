@@ -1,7 +1,6 @@
-import { Content } from './../models/Content';
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Module } from '../models/Module';
+import { Content } from '../models/Content';
 
 @Component({
   selector: 'app-collagemodule',

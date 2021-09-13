@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { GettokenService } from './gettoken.service';
 import {Router} from '@angular/router'; 
 import { DetailedCompany } from './models/DetailedCompany';
+import { Module } from './models/Module';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { DetailedCompany } from './models/DetailedCompany';
 export class DatabaseService {
 
   companies_url:string = "/profiles/profiles/";
+  modules_url:string = "/profiles/modules/";
   base_url:string = "";
   tokenService:GettokenService;
 
@@ -53,9 +55,19 @@ export class DatabaseService {
       })
     };
 
-    this.client.get<DetailedCompany>(this.base_url+this.companies_url + id, httpOptions)
-      .subscribe(data => console.log(data), error => console.log(error));
-
     return this.client.get<DetailedCompany>(this.base_url+this.companies_url + id, httpOptions)
+  }
+
+  getModules(id:number):Observable<Module[]>{
+
+    const token = this.tokenService.getToken();
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization : "JWT " + token
+      })
+    };
+
+    return this.client.get<Module[]>(this.base_url + this.modules_url + id, httpOptions);
   }
 }

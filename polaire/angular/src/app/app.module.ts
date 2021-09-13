@@ -16,7 +16,7 @@ import { DetailedInformationComponent } from './detailed-information/detailed-in
 import { WorkerComponent } from './worker/worker.component';
 import { TextmoduleComponent } from './textmodule/textmodule.component';
 import { GallerymoduleComponent } from './gallerymodule/gallerymodule.component';
-import { PicutremoduleComponent } from './picutremodule/picutremodule.component';
+import { PicturemoduleComponent } from './picturemodule/picturemodule.component';
 import { SocialmediamoduleComponent } from './socialmediamodule/socialmediamodule.component';
 import { CollagemoduleComponent } from './collagemodule/collagemodule.component';
 import { ErrorComponent } from './error/error.component';
@@ -36,7 +36,7 @@ import { LoginComponent } from './login/login.component';
     WorkerComponent,
     TextmoduleComponent,
     GallerymoduleComponent,
-    PicutremoduleComponent,
+    PicturemoduleComponent,
     SocialmediamoduleComponent,
     CollagemoduleComponent,
     ErrorComponent,

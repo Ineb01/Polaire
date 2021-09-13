@@ -1,6 +1,6 @@
+import { Content } from '../models/Content';
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Module } from '../models/Module';
 
 @Component({
   selector: 'app-gallerymodule',
@@ -9,16 +9,15 @@ import { Module } from '../models/Module';
 })
 export class GallerymoduleComponent implements OnInit {
 
-  @Input() module!: Module;
+  @Input() content!: Content;
   indexPic: number;
   picsWithoutFirst!: String[];
 
   constructor() {
     this.indexPic = 0;
-   }
+  }
 
   ngOnInit(): void {
-    this.picsWithoutFirst = this.module.content.pictures.slice(1, this.module.content.pictures.length);
-    console.log(this.picsWithoutFirst);
+    this.picsWithoutFirst = this.content.pictures.slice(1, this.content.pictures.length);
   }
 }

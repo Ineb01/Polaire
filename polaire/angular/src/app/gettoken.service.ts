@@ -20,8 +20,7 @@ export class GettokenService {
 
   logout(){
     this.token = new TokenValue("");
-    localStorage.clear();
-    window.location.reload();
+    window.localStorage.clear();
   }
 
   login(username:string, password:string){
@@ -35,7 +34,7 @@ export class GettokenService {
       error => {
         this.changeLoginPage();
       }
-    )              
+    )             
   }
 
   private changeLoginPage(){

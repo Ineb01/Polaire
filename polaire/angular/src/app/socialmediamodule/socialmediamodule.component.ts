@@ -1,6 +1,6 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Module } from '../models/Module';
+import { Content } from '../models/Content';
 
 @Component({
   selector: 'app-socialmediamodule',
@@ -9,7 +9,7 @@ import { Module } from '../models/Module';
 })
 export class SocialmediamoduleComponent implements OnInit {
 
-  @Input() module!: Module;
+  @Input() content!: Content;
 
   constructor() { }
 

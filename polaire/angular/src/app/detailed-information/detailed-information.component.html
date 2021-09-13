@@ -16,15 +16,38 @@
                 </div>
 
                 <app-worker [worker]="company.worker" class="inlineblock"></app-worker>
-                <!--   modules coming in future version
-                <app-textmodule [module]="company.modules[0]" class="inlineblock"></app-textmodule>
-            -->
+            </li>
+        </ol>
+        <ol>
+            <li *ngFor="let module of modules">
 
+                <div *ngIf="module.type == 'text'">
+                    <app-textmodule [content]="module.content">
+                    </app-textmodule>
+                </div>
+
+                <div *ngIf="module.type == 'gallery'">
+                    <app-gallerymodule [content]="module.content">
+                    </app-gallerymodule>
+                </div>
+
+                <div *ngIf="module.type == 'picture'">
+                    <app-picturemodule [content]="module.content">
+                    </app-picturemodule>
+                </div>
+
+                <div *ngIf="module.type == 'sozial'">
+                    <app-socialmediamodule [content]="module.content">
+                    </app-socialmediamodule>
+                </div>
+
+                <div *ngIf="module.type == 'collage'">
+                    <app-collagemodule [content]="module.content">
+                    </app-collagemodule>
+                </div>
             </li>
         </ol>
         
-        <!--         modules coming in future version
-        -->
     </div>
     <div *ngIf="company == null">
         <p id="margin"></p>
