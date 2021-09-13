@@ -48,8 +48,8 @@ class ModuleSerializer(serializers.ModelSerializer):
         ret = super(ModuleSerializer, self).to_representation(instance)
         # check the request is list view or detail view
         is_list_view = isinstance(self.instance, list)
-        content = json.loads(instance.content)
-        ret.pop('content')
+        content = json.loads('{"content":'+instance.content+"}")
+        ret.pop("content")
         ret.update(content)
         
         return ret

@@ -16,6 +16,7 @@ import mimetypes
 mimetypes.add_type("application/javascript", ".js", True)
 
 from pathlib import Path
+import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -143,4 +144,13 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ]
+}
+
+JWT_AUTH = {
+
+'JWT_ALLOW_REFRESH': False,
+'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=30),
+
+'JWT_AUTH_HEADER_PREFIX': 'JWT',
+
 }
