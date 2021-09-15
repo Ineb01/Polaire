@@ -21,6 +21,7 @@ from django.views.generic import RedirectView
 
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic.base import TemplateView
 
 from rest_framework_jwt.views import obtain_jwt_token
 
@@ -29,6 +30,6 @@ urlpatterns = [
     path('profiles/', include('profiles.urls')),
     path('admin/', admin.site.urls),
     url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^$', serve, kwargs={'path': 'index.html'}),
-    url(r'^(?!/static/.*)(?P<path>.*\..*)$', RedirectView.as_view(url='/static/%(path)s'))
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static('assets', document_root='static/assets')
+    
+    url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
+]

@@ -55,7 +55,7 @@ export class DatabaseService {
       })
     };
 
-    return this.client.get<DetailedCompany>(this.base_url+this.companies_url + id, httpOptions)
+    return this.client.get<DetailedCompany>(this.base_url+this.companies_url + id +'/', httpOptions)
   }
 
   getModules(id:number):Observable<Module[]>{

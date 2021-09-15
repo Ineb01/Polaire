@@ -17,6 +17,7 @@ mimetypes.add_type("application/javascript", ".js", True)
 
 from pathlib import Path
 import datetime
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'polaire.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(os.path.abspath(os.path.dirname(__name__)), 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
