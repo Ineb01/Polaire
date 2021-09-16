@@ -21,7 +21,7 @@ export class DatabaseService {
     this.tokenService = tokenService;
   }
 
-  getCompanies():Observable<Company[]>{
+  getCompanies():Observable<Company[]>{ 
 
     const token = this.tokenService.getToken();
     
@@ -68,6 +68,6 @@ export class DatabaseService {
       })
     };
 
-    return this.client.get<Module[]>(this.base_url + this.modules_url + id, httpOptions);
+    return this.client.get<Module[]>(this.base_url + this.modules_url + id + '/', httpOptions);
   }
 }
