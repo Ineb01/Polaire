@@ -25,6 +25,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile_angular
-    command: ng build --output-path=../static --watch --source-map=false
+    command: npm --prefix ./angular run watch 
     volumes:
-      - ./polaire/angular:/code
+      - ./polaire:/code
