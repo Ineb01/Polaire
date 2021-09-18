@@ -1,0 +1,30 @@
+version: "3.9"
+   
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=polaire
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile_django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./polaire:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - angular
+  angular:
+    build:
+      context: .
+      dockerfile: Dockerfile_angular
+    command: ng build --output-path=../static --watch --source-map=false
+    volumes:
+      - ./polaire/angular:/code

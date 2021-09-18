@@ -2,7 +2,7 @@
   "name": "polaire-angular",
   "version": "0.0.1",
   "scripts": {
-    "watch": "ng build --output-path=../static --watch",
+    "watch": "ng build --output-path=../static --watch --source-map=false",
     "build": "ng build --output-path=../static"
   },
   "private": true,
