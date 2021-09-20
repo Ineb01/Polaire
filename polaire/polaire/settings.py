@@ -32,7 +32,7 @@ SECRET_KEY = 'v2_kyc(0^p6(5#8j+bmd(k_4lj5r#x+t@8ofvv*0uu2s5x8d*b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['polaire.digitalphoenix.at', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['polaire.at', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -154,7 +154,7 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
 
 'JWT_ALLOW_REFRESH': False,
-'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=30),
+'JWT_EXPIRATION_DELTA': datetime.timedelta(days=30),
 
 'JWT_AUTH_HEADER_PREFIX': 'JWT',
 

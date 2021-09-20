@@ -20,11 +20,10 @@ services:
       - "8000:8000"
     depends_on:
       - db
-      - angular
-  angular:
-    build:
-      context: .
-      dockerfile: Dockerfile_angular
-    command: npm --prefix ./angular run watch 
-    volumes:
-      - ./polaire:/code
+#  angular:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile_angular
+#    command: npm --prefix ./angular run watch 
+#    volumes:
+#      - ./polaire:/code
