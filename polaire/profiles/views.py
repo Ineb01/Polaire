@@ -10,7 +10,7 @@ class CompaniesViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
 
-class ModuleViewSet(viewsets.ModelViewSet):
+class ModuleViewSetFiltered(viewsets.ModelViewSet):
     queryset = Module.objects.all()
     serializer_class = ModuleSerializer
     def get_queryset(self):
@@ -21,4 +21,8 @@ class ModuleViewSet(viewsets.ModelViewSet):
         company = self.kwargs['company']
         
         return Module.objects.filter(company=company)
+
+class ModuleViewSet(viewsets.ModelViewSet):
+    queryset = Module.objects.all()
+    serializer_class = ModuleSerializer
     

@@ -1,21 +1,15 @@
 from django.contrib import admin
 
-from .models import Company, Person, Adress, Module
+from .models import Company, Person, Address, Module
 
-class AdressAdmin(admin.StackedInline):
-    model = Adress
+class AddressAdmin(admin.ModelAdmin):
+    model = Address
 
-class PersonAdmin(admin.StackedInline):
+class PersonAdmin(admin.ModelAdmin):
     model = Person
 
 class CompanyAdmin(admin.ModelAdmin):
-    inlines = [AdressAdmin, PersonAdmin]
-
-class PersonAdmin(admin.ModelAdmin):
-    fieldsets = [
-        (None , {'fields': ['title_first', 'first_name', 'last_name', 'title_last', 'works_at', 'sex', 'picture', 'phone', 'mail']}),
-    ]
-
+    model = Company
 
 class ModuleAdmin(admin.ModelAdmin):
     model = Module
@@ -24,3 +18,6 @@ class ModuleAdmin(admin.ModelAdmin):
 admin.site.register(Company, CompanyAdmin)
 
 admin.site.register(Module, ModuleAdmin)
+
+admin.site.register(Address, AddressAdmin)
+admin.site.register(Person, PersonAdmin)
