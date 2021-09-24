@@ -20,8 +20,27 @@ services:
       - db
   angular:
     build: ./angular
-    command: ng serve
+    command: ng serve --host=0.0.0.0 --sourceMap=false
     volumes:
       - ./angular:/code
     ports:
       - "4200:4200"
+  nginx-proxy:
+    build: nginx
+    restart: always
+    ports:
+      - 443:443
+      - 80:80
+    volumes:
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+      - vhost:/etc/nginx/vhost.d
+
+    depends_on:
+      - django
+      - angular
+
+volumes:
+  static_volume:
+  media_volume:
+  vhost:

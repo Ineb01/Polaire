@@ -12,9 +12,9 @@ import { Module } from './models/Module';
 })
 export class DatabaseService {
 
-  companies_url:string = "/profiles/profiles/";
-  modules_url:string = "/profiles/modules/";
-  base_url:string = "";
+  companies_url:string = "/api/profiles/profiles/";
+  modules_url:string = "/api/profiles/modules/";
+  base_url:string = "http://localhost";
   tokenService:GettokenService;
 
   constructor(private client: HttpClient, tokenService:GettokenService, private route:Router) {

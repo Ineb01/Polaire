@@ -10,8 +10,8 @@ import { TokenValue } from './models/TokenValue'
 
 export class GettokenService {
 
-  auth_url:string = "/api-token-auth/";
-  base_url:string = "";
+  auth_url:string = "/api/api-token-auth/";
+  base_url:string = "http://localhost";
 
   private token!:TokenValue;
 
