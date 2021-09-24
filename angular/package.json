@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "watch": "ng build --output-path=../static --watch --source-map=false",
-    "build": "ng build --output-path=../static"
+    "build": "ng build --output-path=../static",
+    "dev": "ng serve"
   },
   "private": true,
   "dependencies": {

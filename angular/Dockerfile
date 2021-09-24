@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1
 FROM node:16-alpine
 
-WORKDIR /code/angular
-COPY polaire/angular/package*.json .
+WORKDIR /code/
+COPY package*.json .
 RUN npm install
-WORKDIR /code
+
 RUN npm install -g @angular/cli

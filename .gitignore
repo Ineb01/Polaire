@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 
 #custom
-polaire/angular/node_modules/
+angular/node_modules/
 polaire/static/
 data
 

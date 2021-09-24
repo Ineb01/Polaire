@@ -40,13 +40,12 @@ class Company(models.Model):
     validated = models.BooleanField(default=False)
     link_social_media = models.CharField(max_length=400, blank=True, null=True)
 
-    address = models.ForeignKey(
+    address = models.OneToOneField(
         Address,
         on_delete=models.CASCADE,
         verbose_name="address",
         blank=True,
         null=True,
-        unique=True,
     )
 
     def __str__(self):

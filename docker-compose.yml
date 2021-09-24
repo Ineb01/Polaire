@@ -10,9 +10,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   django:
-    build:
-      context: .
-      dockerfile: Dockerfile_django
+    build: ./polaire
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./polaire:/code
@@ -20,10 +18,10 @@ services:
       - "8000:8000"
     depends_on:
       - db
-#  angular:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile_angular
-#    command: npm --prefix ./angular run watch 
-#    volumes:
-#      - ./polaire:/code
+  angular:
+    build: ./angular
+    command: ng serve
+    volumes:
+      - ./angular:/code
+    ports:
+      - "4200:4200"
