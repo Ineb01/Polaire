@@ -1,5 +1,6 @@
 <form>
     <fieldset>
+      <img src="/static/assets/northlights.jpg" alt="example image" id="accountImg">
       <legend>Please fill out the from bellow to create a new account</legend>
       <div class="form-group">
         <label for="companyName" class="form-label mt-4">Company name</label>
@@ -27,7 +28,7 @@
       <div class="form-group">
         <label for="logoLink" class="form-label mt-4">Link to your Logo</label>
         <input type="logoLink" class="form-control" id="logoLink" placeholder="Link to your Logo">
-        <small id="emailHelp" class="form-text text-muted">Please make sure to enter a working link in order to present your company in the best possible way</small>
+        <small id="logoLinkHelp" class="form-text text-muted">Please make sure to enter a working link in order to present your company in the best possible way</small>
       </div>
       <div class="form-group">
         <label for="buisness" class="form-label mt-4">Business</label>
@@ -45,6 +46,7 @@
         <input type="city" class="form-control" id="city" placeholder="City">
         <input type="state" class="form-control" id="state" placeholder="State">
         <input type="country" class="form-control" id="country" placeholder="Country">
+        <input type="zipcode" class="form-control" id="zipcode" placeholder="Zipcode">
       </div>
 
       <!--
@@ -63,7 +65,7 @@
         <input type="pictureLink" class="form-control" id="pictureLink" placeholder="Link to Picture">
         <input type="phoneWorker" class="form-control" id="phoneWorker" placeholder="Worker's Phone number">
         <input type="mailWorker" class="form-control" id="mailWorker" placeholder="Worker's mail address">
-      </div>
-      <a class="btn btn-primary" (click)="submit()">submit</a>-->
+      </div>-->
+      <a class="btn btn-primary" (click)="submit()">submit</a>
     </fieldset>
   </form>

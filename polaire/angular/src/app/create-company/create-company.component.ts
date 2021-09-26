@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { zip } from 'rxjs';
 
 @Component({
   selector: 'app-create-company',
@@ -16,46 +17,68 @@ export class CreateCompanyComponent implements OnInit {
   submit(){
     var name = (<HTMLInputElement>document.getElementById("companyName")).value;
     if(name.length < 1) this.addClassInvalid("companyName");
+    else this.removeClassInvalid("companyName");
 
     var phoneNumber = (<HTMLInputElement>document.getElementById("phoneNumber")).value;
-    if(phoneNumber.length < 6) this.addClassInvalid("phoneNumber");
+    if(phoneNumber.length < 6 || !this.onlyNumbers(phoneNumber.substring(1))) this.addClassInvalid("phoneNumber");
+    else this.removeClassInvalid("phoneNumber");
 
     var mail = (<HTMLInputElement>document.getElementById("mail")).value;
-    if(mail.length < 6) this.addClassInvalid("mail");
+    if(mail.length < 6 || !this.validEmail(mail)) this.addClassInvalid("mail");
+    else this.removeClassInvalid("mail");
 
     var business = (<HTMLInputElement>document.getElementById("business")).value;
     if(business.length < 4) this.addClassInvalid("business");
+    else this.removeClassInvalid("business");
+
+    var logoLink = (<HTMLInputElement>document.getElementById("logoLink")).value;
+    if(logoLink.length < 6) this.addClassInvalid("logoLink");
+    else this.removeClassInvalid("logoLink");
 
     var street = (<HTMLInputElement>document.getElementById("street")).value;
     if(street.length < 1) this.addClassInvalid("street");
+    else this.removeClassInvalid("street");
 
     var house = (<HTMLInputElement>document.getElementById("house")).value;
     if(house.length < 4) this.addClassInvalid("house");
+    else this.removeClassInvalid("house");
 
     var city = (<HTMLInputElement>document.getElementById("city")).value;
     if(city.length < 4) this.addClassInvalid("city");
-
-    var state = (<HTMLInputElement>document.getElementById("state")).value;
-    if(state.length < 4) this.addClassInvalid("state");
+    else this.removeClassInvalid("city");
 
     var country = (<HTMLInputElement>document.getElementById("country")).value;
     if(country.length < 4) this.addClassInvalid("country");
+    else this.removeClassInvalid("country");
 
-    var firstName = (<HTMLInputElement>document.getElementById("firstName")).value;
-    if(firstName.length < 4) this.addClassInvalid("firstName");
-
-    var lastName = (<HTMLInputElement>document.getElementById("lastName")).value;
-    if(lastName.length < 4) this.addClassInvalid("lastName");
-
-    var phoneWorker = (<HTMLInputElement>document.getElementById("phoneWorker")).value;
-    if(phoneWorker.length < 4) this.addClassInvalid("phoneWorker");
-
-    var mailWorker = (<HTMLInputElement>document.getElementById("mailWorker")).value;
-    if(mailWorker.length < 4) this.addClassInvalid("mailWorker");
+    var zipcode =(<HTMLInputElement>document.getElementById("zipcode")).value;
+    if(zipcode.length < 4 || zipcode.length > 5 || !this.onlyNumbers(zipcode)) this.addClassInvalid("zipcode");
+    else this.removeClassInvalid("zipcode");
   }
 
   addClassInvalid(id:string){
-    var element = document.getElementById(id)!;
+    var element = <HTMLInputElement>document.getElementById(id)!;
     element.classList.add("is-invalid");
+    element.value = '';
+  }
+
+  removeClassInvalid(id:string){
+    var element = document.getElementById(id)!;
+    element.classList.replace("is-invalid", "is-valid");
+    element.classList.add("is-valid");
+  }
+
+  validEmail(email:string):boolean{
+    for(let i = 0; i < email.length; i++){
+      if(email.charAt(i) == '@') return true;
+    }
+    return false;
+  }
+
+  onlyNumbers(input:String):boolean{
+    for(let i = 0; i < input.length; i++){
+      if(input.charCodeAt(i) < 48 || input.charCodeAt(i) > 57) return false;
+    }
+    return true;
   }
 }
