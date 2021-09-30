@@ -2,6 +2,10 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/minty/bootswatch";
 
+#companyList{
+    min-height: 52vh;
+}
+
 #companyTable{
     top: 20px;
     position: relative;
@@ -9,7 +13,7 @@
 }
 
 #newCompany{
-    margin-left: auto;
+    margin-left: 30px;
     margin-right: auto;
 }
 

@@ -1,10 +1,11 @@
-<div>
+<div id="companyList">
     <app-filterbar></app-filterbar>
     <ol id="companyTable">
         <li *ngFor="let company of companyList">
             <app-company  [company]="company">
             </app-company>
         </li>
+        
     </ol>
     <a [routerLink]="['/newaccount']" class="btn btn-primary" id="newCompany">Create new Company</a>
 </div>
