@@ -4,14 +4,15 @@ services:
   db:
     image: postgres
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      - ./data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=polaire
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   django:
     build: ./polaire
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "pip install -r requirements.txt && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    restart: always
     volumes:
       - ./polaire:/code
     ports:
@@ -20,7 +21,7 @@ services:
       - db
   angular:
     build: ./angular
-    command: ng serve --host=0.0.0.0 --sourceMap=false
+    command: sh -c "npm install && ng serve --host=0.0.0.0 --sourceMap=false"
     volumes:
       - ./angular:/code
     ports:
@@ -32,8 +33,6 @@ services:
       - 443:443
       - 80:80
     volumes:
-      - static_volume:/home/app/web/staticfiles
-      - media_volume:/home/app/web/mediafiles
       - vhost:/etc/nginx/vhost.d
 
     depends_on:
@@ -41,6 +40,4 @@ services:
       - angular
 
 volumes:
-  static_volume:
-  media_volume:
   vhost:

@@ -1,4 +1,4 @@
-from . import Address, Person, Company, Module
+from .models import Address, Person, Company, Module
 
 from rest_framework import serializers
 

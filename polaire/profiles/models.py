@@ -2,6 +2,7 @@ from typing import Mapping
 from django.db import models
 from django.db.models.fields import CharField
 from django.db.models.query_utils import PathInfo
+from django.contrib.auth.models import User
 
 class Address(models.Model):
     street = models.CharField(max_length=30)
@@ -44,6 +45,14 @@ class Company(models.Model):
         Address,
         on_delete=models.CASCADE,
         verbose_name="address",
+        blank=True,
+        null=True,
+    )
+
+    user = models.OneToOneField(
+        User,
+        on_delete=models.CASCADE,
+        verbose_name="user",
         blank=True,
         null=True,
     )

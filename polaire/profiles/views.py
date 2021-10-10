@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from rest_framework import viewsets
 from rest_framework import generics
 from .models import Company, Person, Module
-from .models.serializers import CompanySerializer, ModuleSerializer
+from .serializers import CompanySerializer, ModuleSerializer
 
 
 class CompaniesViewSet(viewsets.ModelViewSet):

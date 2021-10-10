@@ -28,8 +28,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     path('api/profiles/', include('profiles.urls')),
+    path('api/users/', include('users.urls')),
     path('api/admin/', admin.site.urls),
     url('api/api-token-auth/', obtain_jwt_token),
-    
-    url(r'^.*', TemplateView.as_view(template_name="home.html"), name="home")
 ]
