@@ -45,8 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'versatileimagefield',
     'profiles',
     'users',
+    'images',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +164,15 @@ JWT_AUTH = {
 }
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+VERSATILEIMAGEFIELD_RENDITION_KEY_SETS = {
+    'pictures': [
+        ('full_size', 'url'),
+        ('thumbnail', 'thumbnail__100x100'),
+        ('medium_square_crop', 'crop__400x400'),
+        ('small_square_crop', 'crop__50x50')
+    ]
+}

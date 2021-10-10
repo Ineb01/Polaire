@@ -29,6 +29,9 @@ from rest_framework_jwt.views import obtain_jwt_token
 urlpatterns = [
     path('api/profiles/', include('profiles.urls')),
     path('api/users/', include('users.urls')),
+    path('api/images/', include('images.urls')),
     path('api/admin/', admin.site.urls),
     url('api/api-token-auth/', obtain_jwt_token),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

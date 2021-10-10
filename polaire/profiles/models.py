@@ -3,6 +3,7 @@ from django.db import models
 from django.db.models.fields import CharField
 from django.db.models.query_utils import PathInfo
 from django.contrib.auth.models import User
+from images.models import Image
 
 class Address(models.Model):
     street = models.CharField(max_length=30)
@@ -22,7 +23,12 @@ class Company(models.Model):
     ]
     company_type = models.CharField(max_length=3, choices=COMPANY_TYPE, default='EPU')
 
-    logo = models.CharField(max_length=128, blank=True, null=True)
+    logo = models.ForeignKey(
+        Image,
+        on_delete=models.SET_NULL,
+        blank=True, null=True,
+        verbose_name="Image",
+    )
     name = models.CharField(max_length=30)
     phone = models.CharField(max_length=30)
     mail = models.CharField(max_length=30)
@@ -109,7 +115,12 @@ class Person(models.Model):
     ]
     job = models.CharField(max_length=1, choices=JOB, default='n')
     
-    picture = models.CharField(max_length=128, blank=True, null=True)
+    picture = models.ForeignKey(
+        Image,
+        on_delete=models.SET_NULL,
+        blank=True, null=True,
+        verbose_name="Image",
+    )
 
     phone = models.CharField(max_length=30)
     mail = models.CharField(max_length=40)

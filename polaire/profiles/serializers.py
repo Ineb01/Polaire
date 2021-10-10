@@ -2,6 +2,8 @@ from .models import Address, Person, Company, Module
 
 from rest_framework import serializers
 
+from images.serializers import ImageSerializer
+
 import json
 
 
@@ -12,12 +14,14 @@ class AddressSerializer(serializers.ModelSerializer):
 
   
 class PersonSerializer(serializers.ModelSerializer):
+    picture = ImageSerializer(read_only=True)
     class Meta:
         model = Person
         fields = '__all__'
 
 class CompanySerializer(serializers.ModelSerializer):
     address = AddressSerializer(read_only=False)
+    logo = ImageSerializer(default=None)
     class Meta:
         model = Company
         fields = '__all__'
