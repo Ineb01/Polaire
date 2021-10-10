@@ -22,7 +22,7 @@ class Company(models.Model):
     ]
     company_type = models.CharField(max_length=3, choices=COMPANY_TYPE, default='EPU')
 
-    logo = models.CharField(max_length=128)
+    logo = models.CharField(max_length=128, blank=True, null=True)
     name = models.CharField(max_length=30)
     phone = models.CharField(max_length=30)
     mail = models.CharField(max_length=30)
@@ -100,9 +100,16 @@ class Person(models.Model):
         ('f', 'Female'),
         ('n', 'Not Spezified'),
     ]
-    sex = models.CharField(max_length=10, choices=SEX, default='n')
+    sex = models.CharField(max_length=1, choices=SEX, default='n')
+
+    JOB = [
+        ('l', 'Lead'),
+        ('o', 'Other'),
+        ('n', 'Not Spezified'),
+    ]
+    job = models.CharField(max_length=1, choices=JOB, default='n')
     
-    picture = models.CharField(max_length=128)
+    picture = models.CharField(max_length=128, blank=True, null=True)
 
     phone = models.CharField(max_length=30)
     mail = models.CharField(max_length=40)

@@ -17,15 +17,17 @@ class PersonSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CompanySerializer(serializers.ModelSerializer):
-    workers = PersonSerializer(many=True,read_only=True, source='person_set')
     address = AddressSerializer(read_only=False)
     class Meta:
         model = Company
         fields = '__all__'
-        extra_fields = ['address', 'workers']
+        extra_fields = ['address']
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
+        lead = Person.objects.filter(company=response['id']).filter(job='l').first()
+        if(lead != None):
+            response['worker'] = PersonSerializer(lead).data
         return response
 
     def create(self, validated_data):

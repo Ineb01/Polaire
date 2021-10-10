@@ -6,6 +6,8 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'profiles', views.CompaniesViewSet)
+router.register(r'workers/(?P<company>[^/.]+)', views.PersonViewSetFiltered)
+router.register(r'workers', views.PersonViewSet)
 router.register(r'modules/(?P<company>[^/.]+)', views.ModuleViewSetFiltered)
 router.register(r'modules', views.ModuleViewSet)
 

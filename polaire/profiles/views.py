@@ -3,12 +3,28 @@ from django.http import HttpResponse
 from rest_framework import viewsets
 from rest_framework import generics
 from .models import Company, Person, Module
-from .serializers import CompanySerializer, ModuleSerializer
+from .serializers import CompanySerializer, ModuleSerializer, PersonSerializer
 
 
 class CompaniesViewSet(viewsets.ModelViewSet):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+
+class PersonViewSet(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+
+class PersonViewSetFiltered(viewsets.ModelViewSet):
+    queryset = Person.objects.all()
+    serializer_class = PersonSerializer
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases
+        for the currently authenticated user.
+        """
+        company = self.kwargs['company']
+        
+        return Person.objects.filter(company=company)
 
 class ModuleViewSetFiltered(viewsets.ModelViewSet):
     queryset = Module.objects.all()
