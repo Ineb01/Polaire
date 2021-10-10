@@ -6,6 +6,7 @@ __pycache__/
 #custom
 angular/node_modules/
 polaire/static/
+polaire/media/
 data
 
 # C extensions
