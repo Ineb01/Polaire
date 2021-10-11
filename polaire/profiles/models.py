@@ -5,10 +5,12 @@ from django.db.models.query_utils import PathInfo
 from django.contrib.auth.models import User
 from images.models import Image
 
+from django.core.validators import MinValueValidator, EmailValidator, RegexValidator, URLValidator
+
 class Address(models.Model):
     street = models.CharField(max_length=30)
     house = models.IntegerField()
-    postal = models.IntegerField()
+    postal = models.IntegerField(validators=[MinValueValidator(1000)])
     city = models.CharField(max_length=30)
     state = models.CharField(max_length=30, blank=True, null=True)
     country = models.CharField(max_length=30)
@@ -30,8 +32,8 @@ class Company(models.Model):
         verbose_name="Image",
     )
     name = models.CharField(max_length=30)
-    phone = models.CharField(max_length=30)
-    mail = models.CharField(max_length=30)
+    phone = models.CharField(max_length=30, validators=[RegexValidator(regex="^[+]?\d*$")] )
+    mail = models.CharField(max_length=30, validators=[EmailValidator()])
 
     BUSINESS = [
         ('Fotograf', 'Fotograf'),
@@ -45,7 +47,7 @@ class Company(models.Model):
     business = models.CharField(max_length=30, choices=BUSINESS, default='Sonstige')
     
     validated = models.BooleanField(default=False)
-    link_social_media = models.CharField(max_length=400, blank=True, null=True)
+    link_social_media = models.CharField(max_length=400, blank=True, null=True, validators=[URLValidator()])
 
     address = models.OneToOneField(
         Address,
