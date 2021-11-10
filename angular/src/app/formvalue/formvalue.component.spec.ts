@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateCompanyComponent } from './create-company.component';
+import { FormvalueComponent } from './formvalue.component';
 
-describe('CreateCompanyComponent', () => {
-  let component: CreateCompanyComponent;
-  let fixture: ComponentFixture<CreateCompanyComponent>;
+describe('FilterbarComponent', () => {
+  let component: FormvalueComponent;
+  let fixture: ComponentFixture<FormvalueComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreateCompanyComponent ]
+      declarations: [ FormvalueComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateCompanyComponent);
+    fixture = TestBed.createComponent(FormvalueComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

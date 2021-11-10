@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FormService } from './form.service';
+import { GettokenService } from './gettoken.service';
 
-describe('FormService', () => {
-  let service: FormService;
+describe('GettokenService', () => {
+  let service: GettokenService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FormService);
+    service = TestBed.inject(GettokenService);
   });
 
   it('should be created', () => {

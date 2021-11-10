@@ -15,8 +15,6 @@ export class DetailedInformationComponent implements OnInit {
   company!: DetailedCompany;
   modules!: Module[];
 
-  @Input() test!:String;
-
   constructor(private route: ActivatedRoute, DatabaseService: DatabaseService) {
 
     DatabaseService.getDetailedCompany(this.route.snapshot.params['id']).subscribe(data => this.company = data);
@@ -25,6 +23,10 @@ export class DetailedInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  test(){
+    
   }
 }
 

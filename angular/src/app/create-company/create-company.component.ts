@@ -1,5 +1,9 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { zip } from 'rxjs';
+import { DatabaseService } from '../database.service';
+import { FormService } from '../from.service';
+import { Error } from '../models/FormModules/Error';
+import { FormValue } from '../models/FormModules/FormValue';
 
 @Component({
   selector: 'app-create-company',
@@ -8,52 +12,170 @@ import { zip } from 'rxjs';
 })
 export class CreateCompanyComponent implements OnInit {
 
-  constructor() { }
+  FromService: FormService;
+  formData!: FormValue[];
+  DatabaseService: DatabaseService;
+  client: HttpClient;
+  private url:String = "http://localhost/api/";
 
-  ngOnInit(): void {
+  constructor(FromService: FormService, DatabaseService:DatabaseService, client: HttpClient) { 
+    this.FromService = FromService;
+    this.DatabaseService = DatabaseService;
+    this.client = client;
   }
 
+  ngOnInit(): void {
+    this.FromService.makeFormComapies().subscribe(
+      data => {
+        this.formData = Object.values(data.actions.POST);
+        this.addNames(data.actions.POST);
+      } 
+    )
+  }
+
+  addNames(form:JSON){
+    var j:number = 0;
+    for(var i in form){
+      this.formData[j].name = i;
+      j++;
+    }
+  }
 
   submit(){
-    var name = (<HTMLInputElement>document.getElementById("companyName")).value;
-    if(name.length < 1) this.addClassInvalid("companyName");
-    else this.removeClassInvalid("companyName");
+    var data = this.setData();
+    var result = this.DatabaseService.makePost(data, "http://localhost/api/profiles/profiles/");
+    result.subscribe(
+      data => console.log(data),
+      error => {
+        var errorResult = error;
+        var errorNames: string[] = [];
+        var errors:Error[] = Object.values(errorResult.error);
 
-    var phoneNumber = (<HTMLInputElement>document.getElementById("phoneNumber")).value;
-    if(phoneNumber.length < 6 || !this.onlyNumbers(phoneNumber.substring(1))) this.addClassInvalid("phoneNumber");
-    else this.removeClassInvalid("phoneNumber");
+        for(let i = 0; i < errors.length; i++){
+          console.log(Object.values(errors[i]));
+        }
+        /*for(var i in errorResult.error){
+          errorNames.push(i);
+        }*/
+      }
+    )
+  }
 
-    var mail = (<HTMLInputElement>document.getElementById("mail")).value;
-    if(mail.length < 6 || !this.validEmail(mail)) this.addClassInvalid("mail");
-    else this.removeClassInvalid("mail");
+  setData():string{
+    var data = `{`;
+    var counter = 0;
 
-    var business = (<HTMLInputElement>document.getElementById("business")).value;
-    if(business.length < 4) this.addClassInvalid("business");
-    else this.removeClassInvalid("business");
+    for(let i = 0; i < this.formData.length; i++){
+      if(!this.formData[i].read_only){
+        if(this.formData[i].type == "string"){
+          data = this.writeStringIntegerData(this.formData[i], counter, data);
+        }
+        if(this.formData[i].type == "integer"){
+          data = this.writeStringIntegerData(this.formData[i], counter, data);
+        }
+        if(this.formData[i].type == "choice"){
+          data = this.writeChoice(this.formData[i], counter, data);
+        }
+        if(this.formData[i].type == "nested object"){
+          data = this.writeNested(this.formData[i], counter, data);
+        }
+        if(this.formData[i].type == "file upload"){
+          data = this.writeFile(this.formData[i], counter, data);
+        }
+        counter ++;
+      }
+    };
+    data += `}`;
+    return data;
+  }
 
-    var logoLink = (<HTMLInputElement>document.getElementById("logoLink")).value;
-    if(logoLink.length < 6) this.addClassInvalid("logoLink");
-    else this.removeClassInvalid("logoLink");
+  correctStringData(val:FormValue):boolean{
+    var value = (<HTMLInputElement>document.getElementById(val.name)).value;
+    if(val.required && (value.length < 1)){
+      this.addClassInvalid(val.name);
+      return false;
+    }
+    return true;
+  }
 
-    var street = (<HTMLInputElement>document.getElementById("street")).value;
-    if(street.length < 1) this.addClassInvalid("street");
-    else this.removeClassInvalid("street");
+  writeStringIntegerData(val : FormValue, i:number, data:string):string{
+    var value = (<HTMLInputElement>document.getElementById(val.name)).value;
+    if(i > 0) data += `,`;
+    data += `"${val.name}": "${value}"`;
+    return data;
+  }
 
-    var house = (<HTMLInputElement>document.getElementById("house")).value;
-    if(house.length < 4) this.addClassInvalid("house");
-    else this.removeClassInvalid("house");
+  correctNumberData(val:FormValue):boolean{
+    var value = (<HTMLInputElement>document.getElementById(val.name)).value;
+    if(value.length < 1 && (val.required || !this.onlyNumbers(value))){
+      this.addClassInvalid(val.name);
+      return false;
+    }
+    return true;
+  }
 
-    var city = (<HTMLInputElement>document.getElementById("city")).value;
-    if(city.length < 4) this.addClassInvalid("city");
-    else this.removeClassInvalid("city");
+  writeChoice(val: FormValue, i: number, data:string):string{
+    var value = (<HTMLInputElement>document.getElementById(val.name)).value;
+    if(i > 0) data += `,`;
+    value = this.getRightValue(val, value);
+    data += `"${val.name}": "${value}"`;
+    return data;
+  }
 
-    var country = (<HTMLInputElement>document.getElementById("country")).value;
-    if(country.length < 4) this.addClassInvalid("country");
-    else this.removeClassInvalid("country");
+  correctNestedData(val:FormValue):boolean{
+    var validData = true;
+    for(let j = 0; j < val.childrenArray.length; j++){
+      if(!val.childrenArray[j].read_only){
+        if(val.childrenArray[j].type == "integer"){
+          if(!this.correctStringData(val.childrenArray[j])) validData = false; 
+        }
+        if(val.childrenArray[j].type == "string"){
+          if(!this.correctNumberData(val.childrenArray[j])) validData = false; 
+        }
+        if(val.childrenArray[j].type == "nested object"){
+          if(!this.correctNestedData(val.childrenArray[j])) validData = false; 
+        }
+      }
+    }
+    return validData;
+  }
 
-    var zipcode =(<HTMLInputElement>document.getElementById("zipcode")).value;
-    if(zipcode.length < 4 || zipcode.length > 5 || !this.onlyNumbers(zipcode)) this.addClassInvalid("zipcode");
-    else this.removeClassInvalid("zipcode");
+  writeNested(val: FormValue, i: number, data:string):string{
+    if(i > 0) data += `,`;
+    data += `"${val.name}": {`
+    var counter =0;
+    for(let j = 0; j < val.childrenArray.length; j++){
+      if(!val.childrenArray[j].read_only){
+        if(val.childrenArray[j].type == "integer"|| val.childrenArray[j].type == "string"){
+          data = this.writeStringIntegerData(val.childrenArray[j], counter, data);
+        }
+        if(val.childrenArray[j].type == "choice"){
+          data = this.writeChoice(val.childrenArray[j], counter, data);
+        }
+        if(val.childrenArray[j].type == "nested object"){
+          data = this.writeNested(val.childrenArray[j], counter, data);
+        }
+        if(val.childrenArray[j].type == "image upload"){
+          data = this.writeFile(val.childrenArray[j], counter, data);
+        }
+        counter ++;
+      }
+    }
+    data += `}`
+    return data;
+  }
+
+  writeFile(val: FormValue, i: number, data:string):string{
+    if(i > 0) data += `,`;
+    data += `"${val.name}": ""`;
+    return data;
+  }
+
+  getRightValue(formValue: FormValue, displayName: string):string{
+    for(let i = 0; i < formValue.choices.length; i++){
+      if(formValue.choices[i].display_name == displayName) return formValue.choices[i].value;
+    }
+    return "error";
   }
 
   addClassInvalid(id:string){

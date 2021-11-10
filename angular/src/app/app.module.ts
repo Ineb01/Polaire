@@ -1,5 +1,5 @@
-import { RouterModule, Routes } from '@angular/router';
-import { ModuleWithComponentFactories, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -22,6 +22,8 @@ import { CollagemoduleComponent } from './collagemodule/collagemodule.component'
 import { ErrorComponent } from './error/error.component';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { LoginComponent } from './login/login.component';
+import { FormvalueComponent } from './formvalue/formvalue.component';
+
 
 
 @NgModule({
@@ -41,7 +43,8 @@ import { LoginComponent } from './login/login.component';
     CollagemoduleComponent,
     ErrorComponent,
     CreateCompanyComponent,
-    LoginComponent
+    LoginComponent,
+    FormvalueComponent
   ],
   imports: [
     BrowserModule,

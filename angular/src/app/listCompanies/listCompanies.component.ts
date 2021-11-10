@@ -1,7 +1,6 @@
 import { DatabaseService } from './../database.service';
 import { Company } from '../models/Company';
-import { Component, NgZone, OnChanges, OnInit, SimpleChanges, ɵRender3NgModuleRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-list-companies',

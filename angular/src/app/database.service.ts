@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
 import { GettokenService } from './gettoken.service';
-import {Router} from '@angular/router'; 
+import {Data, Router} from '@angular/router'; 
 import { DetailedCompany } from './models/DetailedCompany';
 import { Module } from './models/Module';
 
@@ -34,10 +34,8 @@ export class DatabaseService {
     this.client.get<Company[]>(this.base_url+this.companies_url, httpOptions)
       .subscribe(
         data => {
-          console.log("data: " + data);
         }
         ,error => {
-          console.log("error: "+ error);
           this.route.navigate(['/', 'login'])
         }
       )
@@ -69,5 +67,20 @@ export class DatabaseService {
     };
 
     return this.client.get<Module[]>(this.base_url + this.modules_url + id + '/', httpOptions);
+  }
+
+  makePost(body:string, url:string):Observable<string>{
+
+    const token = this.tokenService.getToken();
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization' : "JWT " + token,
+        'Accept' : 'application/json',
+        'Content-Type': 'application/json'
+      })
+    };
+
+    return this.client.post<string>(url, body, httpOptions);
   }
 }
