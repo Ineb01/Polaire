@@ -83,4 +83,19 @@ export class DatabaseService {
 
     return this.client.post<string>(url, body, httpOptions);
   }
+
+  uploadFile(file:File, fileName:string, url:string):Observable<any>{
+    const formData: FormData = new FormData();
+    const token = this.tokenService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization' : "JWT " + token
+      })
+    }
+
+    formData.append("image",file);
+    formData.append("name", fileName);
+
+    return this.client.post<any>(url, formData, httpOptions)
+  }
 }

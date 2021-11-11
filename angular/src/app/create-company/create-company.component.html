@@ -3,9 +3,12 @@
       <img src="/static/assets/northlights.jpg" alt="example image" id="accountImg">
       <legend>Please fill out the from bellow to create a new account</legend>
 
-      <div *ngFor="let formfield of formData">
-        <div *ngIf="!formfield.read_only">
-          <app-formvalue [formValue]="formfield"></app-formvalue>
+      <div *ngFor="let formfield of formData"  class="nestedFormFields">
+        <div *ngIf="!formfield.read_only && formfield.type == 'nested object'">
+          <app-formvalue [formValue]="formfield" (uploadFileFunction)="uploadFileFunction()"></app-formvalue>
+        </div>
+        <div *ngIf="!formfield.read_only && formfield.type != 'nested object'" class="formFields">
+          <app-formvalue [formValue]="formfield" (uploadFileFunction)="uploadFileFunction()"></app-formvalue>
         </div>
       </div>
 

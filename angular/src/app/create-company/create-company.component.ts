@@ -1,6 +1,8 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../database.service';
+import { FileInfoService } from '../fileInfo.service';
 import { FormService } from '../from.service';
 import { Error } from '../models/FormModules/Error';
 import { FormValue } from '../models/FormModules/FormValue';
@@ -14,14 +16,16 @@ export class CreateCompanyComponent implements OnInit {
 
   FromService: FormService;
   formData!: FormValue[];
+  fileInfo:FileInfoService;
   DatabaseService: DatabaseService;
   client: HttpClient;
   private url:String = "http://localhost/api/";
 
-  constructor(FromService: FormService, DatabaseService:DatabaseService, client: HttpClient) { 
+  constructor(FromService: FormService, DatabaseService:DatabaseService, client: HttpClient, fileInfo:FileInfoService) { 
     this.FromService = FromService;
     this.DatabaseService = DatabaseService;
     this.client = client;
+    this.fileInfo = fileInfo;
   }
 
   ngOnInit(): void {
@@ -47,16 +51,9 @@ export class CreateCompanyComponent implements OnInit {
     result.subscribe(
       data => console.log(data),
       error => {
-        var errorResult = error;
-        var errorNames: string[] = [];
-        var errors:Error[] = Object.values(errorResult.error);
-
-        for(let i = 0; i < errors.length; i++){
-          console.log(Object.values(errors[i]));
-        }
-        /*for(var i in errorResult.error){
-          errorNames.push(i);
-        }*/
+        console.log(error);
+        var errorFields:string[] = this.getErrorFields(error);
+        this.addInvalidClasses(errorFields);
       }
     )
   }
@@ -92,7 +89,6 @@ export class CreateCompanyComponent implements OnInit {
   correctStringData(val:FormValue):boolean{
     var value = (<HTMLInputElement>document.getElementById(val.name)).value;
     if(val.required && (value.length < 1)){
-      this.addClassInvalid(val.name);
       return false;
     }
     return true;
@@ -107,8 +103,7 @@ export class CreateCompanyComponent implements OnInit {
 
   correctNumberData(val:FormValue):boolean{
     var value = (<HTMLInputElement>document.getElementById(val.name)).value;
-    if(value.length < 1 && (val.required || !this.onlyNumbers(value))){
-      this.addClassInvalid(val.name);
+    if(value.length < 1 && (val.required)){
       return false;
     }
     return true;
@@ -134,6 +129,9 @@ export class CreateCompanyComponent implements OnInit {
         }
         if(val.childrenArray[j].type == "nested object"){
           if(!this.correctNestedData(val.childrenArray[j])) validData = false; 
+        }
+        if(val.childrenArray[j].type == "image upload"){
+          if(!this.correctFile(val.childrenArray[j])) validData = false;
         }
       }
     }
@@ -165,9 +163,18 @@ export class CreateCompanyComponent implements OnInit {
     return data;
   }
 
+  correctFile(val:FormValue):boolean{
+    var result = this.fileInfo.getFileUpload(val.name);
+    if(result == "no data"){
+      console.log("no file was uploaded");
+      return false;
+    }
+    return true;
+  }
+
   writeFile(val: FormValue, i: number, data:string):string{
     if(i > 0) data += `,`;
-    data += `"${val.name}": ""`;
+    data += `"${val.name}": "${this.fileInfo.getFileUpload(val.name)}"`;
     return data;
   }
 
@@ -179,9 +186,12 @@ export class CreateCompanyComponent implements OnInit {
   }
 
   addClassInvalid(id:string){
-    var element = <HTMLInputElement>document.getElementById(id)!;
-    element.classList.add("is-invalid");
-    element.value = '';
+    try{
+      var element = <HTMLInputElement>document.getElementById(id)!;
+      element.classList.add("is-invalid");
+      element.value = '';
+    } catch (error){}
+    
   }
 
   removeClassInvalid(id:string){
@@ -189,18 +199,37 @@ export class CreateCompanyComponent implements OnInit {
     element.classList.replace("is-invalid", "is-valid");
     element.classList.add("is-valid");
   }
-
-  validEmail(email:string):boolean{
-    for(let i = 0; i < email.length; i++){
-      if(email.charAt(i) == '@') return true;
+  
+  addInvalidClasses(errorFields:string[]){
+    for(var i = 0; i < errorFields.length; i++){
+      this.addClassInvalid(errorFields[i]);
     }
-    return false;
   }
 
-  onlyNumbers(input:String):boolean{
-    for(let i = 0; i < input.length; i++){
-      if(input.charCodeAt(i) < 48 || input.charCodeAt(i) > 57) return false;
+  getErrorFields(errorResult:any):string[]{
+    var errorNames: string[] = [];
+    var errors:Error[] = Object.values(errorResult.error);
+    var counter = 0;
+    for(var i in errorResult.error){
+      if(Array.isArray(errors[counter])){
+        errorNames.push(i);
+      } else {
+        errorNames = this.addValues(errors[counter], errorNames);
+      }
+      counter++;
     }
-    return true;
+    return errorNames;
   }
+
+  addValues(error: Error, errorName: string[]):string[]{
+    for(let i in error){
+      errorName.push(i);
+    }
+    return errorName;
+  }
+
+  uploadFileFunction(){
+    console.log("test");
+  }
+
 }

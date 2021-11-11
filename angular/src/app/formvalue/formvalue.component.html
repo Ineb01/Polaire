@@ -1,4 +1,4 @@
-<div>
+<div class="fromValues">
     <div class="form-group" *ngIf="formValue.type == 'string' || formValue.type == 'integer'">
         <label for="{{ formValue.name }}" class="form-label mt-4">{{ formValue.label }}</label>
         <input type="text" class="form-control" id="{{ formValue.name }}" placeholder="{{ formValue.label }}">
@@ -12,16 +12,23 @@
     </div>
 
     <div class="form-group" *ngIf="formValue.type == 'nested object'">
-        <label for="{{ formValue.label }}" class="form-label mt-4">{{ formValue.label }}</label>
-        <div *ngFor="let child of formValue.childrenArray">
-            <div *ngIf="!child.read_only">
-              <app-formvalue [formValue]="child"></app-formvalue>
+        <div class="card border-primary mb-3" style="max-width: 20rem;">
+            <div class="card-header">{{ formValue.label }}</div>
+            <div class="card-body">
+                <div *ngFor="let child of formValue.childrenArray">
+                    <div *ngIf="!child.read_only">
+                      <app-formvalue [formValue]="child"></app-formvalue>
+                    </div>
+                </div>
             </div>
-        </div>
+          </div>
     </div>
 
     <div class="form-group" *ngIf="formValue.type == 'image upload'">
-        <label for="{{ formValue.name }}" class="form-label mt-4">{{ formValue.label }}</label>
-        <input type="file" name="" id="{{ formValue.name }}">
+
+        <label for="formFileSm" class="form-label">{{ formValue.label }}</label>
+        <input class="form-control form-control-sm" id="{{ formValue.name }}" type="file"
+            (change)="onFileSelected($event)"/>
+        <div class="invalid-feedback">{{ errorMessage }}</div>
     </div>
 </div>
