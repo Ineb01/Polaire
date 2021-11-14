@@ -21,7 +21,7 @@ services:
       - db
   angular:
     build: ./angular
-    command: sh -c "npm install && ng serve --host=0.0.0.0 --sourceMap=false"
+    command: sh -c "npm install && ng serve --host=0.0.0.0 --sourceMap=false --no-live-reload"
     volumes:
       - ./angular:/code
     ports:
