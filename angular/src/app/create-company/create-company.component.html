@@ -1,17 +1,15 @@
 <form>
     <fieldset>
-      <img src="/static/assets/northlights.jpg" alt="example image" id="accountImg">
-      <legend>Please fill out the from bellow to create a new account</legend>
+      <img src="http://localhost/media/images/northlights_CfCfBmm.jpg" alt="example image" id="accountImg">
 
-      <div *ngFor="let formfield of formData"  class="nestedFormFields">
-        <div *ngIf="!formfield.read_only && formfield.type == 'nested object'">
-          <app-formvalue [formValue]="formfield" (uploadFileFunction)="uploadFileFunction()"></app-formvalue>
-        </div>
-        <div *ngIf="!formfield.read_only && formfield.type != 'nested object'" class="formFields">
+      <legend id="header">Please fill out the from bellow to create a new account</legend>
+
+      <div *ngFor="let formfield of formData">
+        <div *ngIf="!formfield.read_only" class="element">
           <app-formvalue [formValue]="formfield" (uploadFileFunction)="uploadFileFunction()"></app-formvalue>
         </div>
       </div>
 
-      <a class="btn btn-primary" (click)="submit()">submit</a>
+      <a class="btn btn-primary" (click)="submit()" id="submit">submit</a>
     </fieldset>
   </form>

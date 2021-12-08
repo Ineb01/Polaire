@@ -1,18 +1,18 @@
 <div class="fromValues">
     <div class="form-group" *ngIf="formValue.type == 'string' || formValue.type == 'integer'">
-        <label for="{{ formValue.name }}" class="form-label mt-4">{{ formValue.label }}</label>
+        <label for="{{ formValue.name }}" class="form-label">{{ formValue.label }}</label>
         <input type="text" class="form-control" id="{{ formValue.name }}" placeholder="{{ formValue.label }}">
     </div>
 
     <div class="form-group" *ngIf="formValue.type == 'choice'">
-        <label for="{{ formValue.name }}" class="form-label mt-4">{{ formValue.label }}</label>
+        <label for="{{ formValue.name }}" class="form-label">{{ formValue.label }}</label>
         <select class="form-select" id="{{ formValue.name }}">
             <option *ngFor="let choice of formValue.choices">{{ choice.display_name }}</option>
         </select>
     </div>
 
     <div class="form-group" *ngIf="formValue.type == 'nested object'">
-        <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card border-primary mb-3" style="max-width: 20rem;" id="nestedBox">
             <div class="card-header">{{ formValue.label }}</div>
             <div class="card-body">
                 <div *ngFor="let child of formValue.childrenArray">
